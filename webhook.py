@@ -6,7 +6,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 
 TOKEN = os.getenv("BOT_TOKEN")
 WEBHOOK_PATH = "/webhook"
-WEBHOOK_URL = os.getenv("WEBHOOK_URL")
+WEBHOOK_URL = os.getenv("WEBHOOK_URL") + WEBHOOK_PATH
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
@@ -31,3 +31,7 @@ def create_app():
     return app
 
 app = create_app()
+
+# 🟩 ЭТОТ СТРОКА ОБЯЗАТЕЛЬНА ДЛЯ RENDER!
+if __name__ == "__main__":
+    web.run_app(app, host="0.0.0.0", port=int(os.getenv("PORT", 10000)))
